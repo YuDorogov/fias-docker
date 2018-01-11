@@ -69,6 +69,7 @@ RUN mkdir -p /opt/solr && \
   chown -R $SOLR_USER:$SOLR_GROUP /opt/solr
 
 COPY scripts /opt/docker-solr/scripts
+RUN find /opt/docker-solr/scripts -type f -iname "*" -exec chmod +x {} \;
 RUN chown -R $SOLR_USER:$SOLR_GROUP /opt/docker-solr
 COPY fias-install /opt/fias-install
 #VOLUME ["/fias/fias-data/20170817-full"]
