@@ -1,0 +1,14 @@
+#!/bin/bash
+#
+# Run the initdb, then start solr in the foreground
+set -e
+
+if [[ "$VERBOSE" = "yes" ]]; then
+    set -x
+fi
+
+. /opt/docker-solr/scripts/run-initdb
+/usr/share/apache-tomcat-7.0.81/bin/startup.sh
+echo "Starting Solr $SOLR_VERSION"
+
+exec solr -f "$@"
